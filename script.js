@@ -24,35 +24,26 @@ function addR() {
 
 //Adds a column
 function addC() {
-    /*
-    -> first if there is no columns at all add one by creating a row. for it must exist
-    -> increment counter for numrows
-    -> and numcols
-    -> in normal cases
-    loop and create td for assuming row have to exist always for column to be in existence.
-    increment column counter
-    and if clicked in series of column like row means it need to have that selected color
-    //appending that extra td.
-    //increment counter for numcols
-    */
-   let selection = document.querySelectorAll("#grid tr")
+   //select an element grid tr. 
+   let selection = document.querySelectorAll("#grid tr");
+   //edge case => if there is no row or column at all. make at least one row.
    if(numRows === 0 || numCols === 0) {
-       // alert("for column to exist. there must be a row first created")
+       //call the function addR() to create a row.
        addR();
    }
    else {  //in normal coditions
-        //iterate through each row to make sure column when added stays consistent in multiple rows
+        //iterate through each row present to make sure column when added stays consistent in multiple rows
         for(let i = 0; i < numRows; ++i) {
-            //as it is clicked create a new column
+            //as add column is clicked create a new column by creating a new td element which represents column.
             let add_col = document.createElement("td");
-             //if column in clicked in grid changed to the selected color
+             //if column in clicked in grid changed the color to the selected color
             add_col.onclick = function() {
                 add_col.style.backgroundColor = colorSelected;
             }
-            //adding new column in the grid
+            //add that td element to the the grid tr.
             selection[i].appendChild(add_col);
         }
-        numCols++; //increment the counter
+        numCols++; //increments the column counter by one.
    }
 }
 
@@ -73,27 +64,28 @@ function removeR() {
 }
 //Remove a column
 function removeC() {
-    /*
-    if there is no column. say no column exist to remove.
-    if there is column in normal situation
-    choose a selector which targets class grid tr td
-    remove that td in each of given row.-a for loop
-    decrement the counter
-    */
+   //select an element from grid tr.
    let selection = document.querySelectorAll("#grid tr");
+   //if numCols is 0 that means no column exists. So throw an alert to notify the user.
     if(numCols === 0) {
         alert("No columns exist to remove");
     }
-    else {
+    else {  //in normal situations where there is column
+        //iterates through each row to make sure removal of row is consistent.
         for(let i =0; i < numRows; ++i) {
+            //removes the column in a particular row.
             selection[i].lastElementChild.remove();
         }
-        numCols--;
+        numCols--; //decrements the counter.
     }
+    //edge case => if numcols is 0, 
     if(numCols === 0) {
+        //but numrows is not equal to 0. 
         if(numRows !== 0) {
             let temp = numRows;
+            //then go through each row that exists and remove them and decrement the numRows to 0.
             for(let i = 0; i < temp; ++i) {
+                //remove the row that exists by calling removeR() function which also decrement the numRows.
                 removeR();
             }
         }
@@ -113,9 +105,9 @@ function fill() {
     }
 }
 
-//this function removes all the colors in grid  to default white.
+//this function removes all the colors in grid by changing to default white.
 function clearAll() {
-    //select all elements in grid, tr and td
+    //select all elements in grid tr td
     let selection = document.querySelectorAll("#grid tr td");
     //for loop to iterate through every index in grid.
     for(let i = 0; i < (numRows * numCols); ++i) {
