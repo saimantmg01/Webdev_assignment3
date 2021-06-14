@@ -120,7 +120,7 @@ function clearAll() {
     //for loop to iterate through every index in grid.
     for(let i = 0; i < (numRows * numCols); ++i) {
         //change the background color to white.
-        selection[i].style.backgroundColor = white;
+        selection[i].style.backgroundColor = "white";
     }
 }
 
