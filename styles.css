@@ -3,6 +3,24 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+    text-align: center;
+    background-color:grey;
+}
+.header{
+    margin-top: -22px;
+    background-color: black;
+    height: 100px;
+    
+}
+h1{
+    color: white
+}
+.link{
+    text-decoration: none;
+    color: azure;
+    background-color:gray;
+    padding: 10px 10px 10px 10px;
+    border-radius: 3px;
 }
 .buttons{
     background-color: green;
@@ -11,6 +29,11 @@ body {
     padding-top: 20px;
     padding-right: 20px;  
     text-align: center;
+}
+.tables{
+    margin: auto;
+    background-color: aquamarine;
+    border: 2px solid blue;
 }
 tr,td{
     border:1px;
