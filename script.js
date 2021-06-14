@@ -51,7 +51,10 @@ function selected() {
 }
 
 function fill() {
-    alert("Clicked Fill All")
+    let table = document.querySelectorAll("#grid TR TD")        //selected all in grid, TR and TD
+    for (let i = 0; i < numRows * numCols; i++) {           //loop through the entire grid
+        table[i].style.backgroundColor = colorSelected;     //set the background color to the colorSelected
+    }
 }
 
 function clearAll() {
@@ -59,6 +62,12 @@ function clearAll() {
 }
 
 function fillU() {
-    alert("Clicked Fill All Uncolored")
+    let table = document.querySelectorAll("#grid TR TD")                     //selected all in grid, TR and TD
+
+    for (let i = 0; i < numRows * numCols; i++) {                               //loop through entire grid
+        if (table[i].style.backgroundColor === "" || table[i].style.backgroundColor === "white") {  //if the background color is blank or white
+            table[i].style.backgroundColor = colorSelected;                 //change it the colorSelected
+        }
+    }
 }
 
