@@ -5,7 +5,7 @@ let colorSelected;
 //Adds a row
 function addR() {
     let table = document.querySelector("#grid") //selects the element with gird id 
-    if (numCols === 0 && numRows === 0) {       //if there is no squares 
+    if (numCols === 0 || numRows === 0) {       //if there is no squares 
         numCols = numCols + 1;                  //increase the num of col by one
     }
     let row = document.createElement("TR")      //create the row element
@@ -27,7 +27,18 @@ function addC() {
 
 //Removes a row
 function removeR() {
-    alert("Clicked Remove Row")
+    if (numRows === 0) {            //if all rows has been cleared and button is pressed alert user
+        alert("No more Rows")
+    }
+    else {
+        document.querySelector("TR").remove();  //remove element tr
+        numRows = numRows - 1;          //decrease the numRows
+    }
+    if (numRows === 0) {            //if numRows is 0
+        if (numCols !== 0) {        //but numCols isnt 0
+            numCols = 0             //set num cols  to 0 since all rows plus cols were removed
+        }
+    }
 }
 //Remove a column
 function removeC() {
