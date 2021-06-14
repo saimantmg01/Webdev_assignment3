@@ -44,6 +44,7 @@ function removeR() {
 function removeC() {
     alert("Clicked Remove Col")
 }
+
 //sets global var for selected color
 function selected() {
     colorSelected = document.getElementById("selectedID").value;
@@ -57,8 +58,15 @@ function fill() {
     }
 }
 
+//this function removes all the colors in grid  to default white.
 function clearAll() {
-    alert("Clicked Clear All")
+    //select all elements in grid, tr and td
+    let selection = document.querySelectorAll("#grid tr td");
+    //for loop to iterate through every index in grid.
+    for(let i = 0; i < (numRows * numCols); ++i) {
+        //change the background color to white.
+        selection[i].style.backgroundColor = white;
+    }
 }
 
 function fillU() {
