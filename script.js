@@ -20,9 +20,40 @@ function addR() {
     }
     table.appendChild(row)                   //append the  row into the table
 }
+
+
 //Adds a column
 function addC() {
-    alert("Clicked Add Col")
+    /*
+    -> first if there is no columns at all add one by creating a row. for it must exist
+    -> increment counter for numrows
+    -> and numcols
+    -> in normal cases
+    loop and create td for assuming row have to exist always for column to be in existence.
+    increment column counter
+    and if clicked in series of column like row means it need to have that selected color
+    //appending that extra td.
+    //increment counter for numcols
+    */
+   let selection = document.querySelectorAll("#grid tr")
+   if(numRows === 0 || numCols === 0) {
+       // alert("for column to exist. there must be a row first created")
+       addR();
+   }
+   else {  //in normal coditions
+        //iterate through each row to make sure column when added stays consistent in multiple rows
+        for(let i = 0; i < numRows; ++i) {
+            //as it is clicked create a new column
+            let add_col = document.createElement("td");
+             //if column in clicked in grid changed to the selected color
+            add_col.onclick = function() {
+                add_col.style.backgroundColor = colorSelected;
+            }
+            //adding new column in the grid
+            selection[i].appendChild(add_col);
+        }
+        numCols++; //increment the counter
+   }
 }
 
 //Removes a row
@@ -31,7 +62,7 @@ function removeR() {
         alert("No more Rows")
     }
     else {
-        document.querySelector("TR").remove();  //remove element tr
+        document.querySelector("#grid").lastElementChild.remove();  //remove element tr
         numRows = numRows - 1;          //decrease the numRows
     }
     if (numRows === 0) {            //if numRows is 0
@@ -42,7 +73,31 @@ function removeR() {
 }
 //Remove a column
 function removeC() {
-    alert("Clicked Remove Col")
+    /*
+    if there is no column. say no column exist to remove.
+    if there is column in normal situation
+    choose a selector which targets class grid tr td
+    remove that td in each of given row.-a for loop
+    decrement the counter
+    */
+   let selection = document.querySelectorAll("#grid tr");
+    if(numCols === 0) {
+        alert("No columns exist to remove");
+    }
+    else {
+        for(let i =0; i < numRows; ++i) {
+            selection[i].lastElementChild.remove();
+        }
+        numCols--;
+    }
+    if(numCols === 0) {
+        if(numRows !== 0) {
+            let temp = numRows;
+            for(let i = 0; i < temp; ++i) {
+                removeR();
+            }
+        }
+    }
 }
 
 //sets global var for selected color
